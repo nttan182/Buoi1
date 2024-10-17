@@ -1,6 +1,6 @@
 import http from "http"
-import myDateTime from "./date"
-import {getParamsURL,getPath} from "./getURL"
+import myDateTime from "../../date"
+import {getParamsURL,getPath} from "../../getURL"
 http.createServer(function (req, res){
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
     res.write(myDateTime() + "<br>");
