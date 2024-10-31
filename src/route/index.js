@@ -13,5 +13,7 @@ const initWebRouters = (app) => {
     app.post("/api/editUser", UserController.editUser);
     app.post("/api/deleteUser", UserController.deleteUser);
     app.get("/user/view/:username", UserController.getDetailUserPage);
+    app.get("/login", UserController.getLoginPage);
+    app.post("/api/login", UserController.login);
 }
 export default initWebRouters;
