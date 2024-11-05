@@ -5,10 +5,26 @@ import viewEngine from './viewEngine'
 import initWebRouters from './src/route'
 import bodyParser from 'body-parser'
 import session from 'express-session'
+import { createClient } from 'redis';
+import RedisStore from "connect-redis"
 
 const app = express()
+
+const redisClient = createClient({
+    password: 'zRl7JIEBVKrxTJ9r3IDoa7lywqB5MOAc',
+    socket: {
+        host: 'redis-15849.c295.ap-southeast-1-1.ec2.redns.redis-cloud.com',
+        port: 15849
+    }
+});
+redisClient.connect().catch(console.error)
+let redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "myapp:",
+})
 app.use(
     session({
+      store: redisStore,
       secret: "hehe ahhe hahehheehehhe",
       resave: false,
       saveUninitialized: true,

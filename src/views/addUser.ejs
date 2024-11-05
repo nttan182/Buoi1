@@ -23,7 +23,7 @@
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input
-              type="text"
+              type="password"
               class="form-control"
               id="password"
               name="password"
@@ -52,14 +52,11 @@
           </div>
           <div class="mb-3">
             <label for="sex" class="form-label">Sex</label>
-            <input
-              type="text"
-              class="form-control"
-              id="sex"
-              name="sex"
-              required
-            />
+          <select name="sex" id="sex" class="form-control">
+            <option value="nam">Nam</option>
+            <option value="nu">Nữ</option>
+          </select>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

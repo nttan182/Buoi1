@@ -1,5 +1,6 @@
-import { compare } from "bcrypt";
+import { compare, compareSync } from "bcrypt";
 import userModel from "../services/userModel";
+
 
 const getUserPage = async (req, res) => {
     const listUsers = await userModel.getAllUsers();
@@ -74,13 +75,19 @@ const login = async (req, res) => {
         return;
     }
     const isCheck = compareSync(password, user[0].password);
-    if (isCheck){
+    if (!isCheck){
         res.redirect("/login")
         return;
     }
     req.session.user = user[0];
+    req.session.username = user[0].username;
     req.session.isAuth = true;
     req.session.role = user[0].role;
-    res.redirect("/viewAll")
+    res.redirect("/user/viewAll")
 }
-export default {getUserPage, getAddUserPage, addUser, getEditUserPage, editUser, deleteUser, getDetailUserPage, getLoginPage, login}
+
+const logout = async (req, res) => {
+    req.session.destroy();
+    res.redirect("/login"); 
+}
+export default {getUserPage, getAddUserPage, addUser, getEditUserPage, editUser, deleteUser, getDetailUserPage, getLoginPage, login, logout}
