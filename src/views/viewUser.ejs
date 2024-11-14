@@ -1,32 +1,40 @@
 <div class="container">
-    <a href="/user/add" class="btn btn-primary">Thêm</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>User Name</th>
-                <th>Full Name</th>
-                <th>Address</th>
-                <th>Setting</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% data.rows.forEach(function(user, index) { %>
-                <tr>
-                    <td><%= index+1 %></td>
-                    <td><%= user.username %></td>
-                    <td><%= user.fullname %></td>
-                    <td><%= user.address %></td>
-                    <td>
-                        <a href="/user/edit/<%= user.username %>">Sửa</a>
-                        <form action="/api/deleteUser" method="POST" class="d-inline-block">
-                            <input type="hidden" name="username" value="<%= user.username %>" />
-                            <button type="submit">Xóa</button>
-                        </form>
-                        <a href="/user/view/<%= user.username %>">Xem</a>
-                    </td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
+  <a href="/user/add" class="btn btn-primary">Thêm</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>User Name</th>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>Setting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.rows.forEach(function(user, index) { %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= user.username %></td>
+        <td><%= user.fullname %></td>
+        <td><%= user.address %></td>
+        <td>
+          <a href="/user/edit/<%= user.username %>" class="btn btn-warning"
+            >Sửa</a
+          >
+          <form
+            action="/api/deleteUserByS/<%= user.username %>"
+            method="POST"
+            class="d-inline-block"
+          >
+            <input type="hidden" name="username" value="<%= user.username %>" />
+            <button type="submit" class="btn btn-danger">Xóa</button>
+          </form>
+          <a href="/user/view/<%= user.username %>" class="btn btn-primary"
+            >Xem</a
+          >
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>

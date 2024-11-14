@@ -14,6 +14,7 @@ const initWebRouters = (app) => {
   app.get("/user/viewAll", UserController.getUserPage);
   app.get("/user/add", UserController.getAddUserPage);
   app.post("/api/addUser", UserController.addUser);
+  app.post("/api/addUserByS", UserController.addUserByS);
   app.get("/login", UserController.getLoginPage);
   app.post("/api/login", UserController.login);
   app.get("/logout", UserController.logout);
@@ -32,6 +33,11 @@ const initWebRouters = (app) => {
     "/api/deleteUser/:username",
     auth.isMineOrAdmin,
     UserController.deleteUser
+  );
+  app.post(
+    "/api/deleteUserByS/:username",
+    auth.isMineOrAdmin,
+    UserController.deleteUserByS
   );
   app.get(
     "/user/view/:username",
