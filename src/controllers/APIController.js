@@ -1,4 +1,6 @@
-import userModel from "../services/userModel";
+import userModel from "../services/UserModel";
+import productModel from "../services/ProductModel";
+import groupModel from "../services/GroupModel";
 
 const getAllUsers = async (req, res) => {
   let users = await userModel.getAllUsers();
@@ -92,7 +94,34 @@ const logout = async (req, res) => {
     message: "Đăng xuất thành công",
   });
 };
-
+const getAllGroups = async (req, res) => {
+  let groups = await groupModel.getAllGroups();
+  return res.status(200).json({
+    status: "success",
+    groups: groups,
+  });
+};
+const getAllProducts = async (req, res) => {
+  let products = await productModel.getAllProducts();
+  return res.status(200).json({
+    status: "success",
+    procducts: products,
+  });
+};
+const getDetailProduct = async (req, res) => {
+  const { id } = req.params;
+  let product = await productModel.get(id);
+  if (product.length == 0) {
+    return res.status(404).json({
+      status: "error",
+      product: null,
+    });
+  }
+  return res.status(200).json({
+    status: "success",
+    product: product[0],
+  });
+};
 export default {
   getAllUsers,
   getUserByUsername,
@@ -101,4 +130,7 @@ export default {
   deleteUser,
   login,
   logout,
+  getAllGroups,
+  getAllProducts,
+  getDetailProduct,
 };

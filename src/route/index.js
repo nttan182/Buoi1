@@ -54,5 +54,9 @@ const initWebRouters = (app) => {
   app.post("/api/v1/editUser/:username", apiController.editUser);
   app.post("/api/v1/deleteUser/:username", apiController.deleteUser);
   app.post("/api/v1/login", apiController.login);
+  //API react
+  app.get("/api/v1/getAllGroups", apiController.getAllGroups);
+  app.get("/api/v1/getAllProducts", apiController.getAllProducts);
+  app.post("/api/v1/getDetailProduct/:id", apiController.getDetailProduct);
 };
 export default initWebRouters;

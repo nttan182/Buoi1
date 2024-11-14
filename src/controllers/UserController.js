@@ -1,5 +1,5 @@
 import { compare, compareSync, hashSync } from "bcrypt";
-import userModel from "../services/userModel";
+import userModel from "../services/UserModel";
 import User from "../models/User";
 
 const getUserPage = async (req, res) => {
